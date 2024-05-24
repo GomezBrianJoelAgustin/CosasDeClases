@@ -1,0 +1,42 @@
+*{
+    text-align: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    background-color: blanchedalmond;
+}
+
+h1{
+    padding-top: 10px;
+}
+
+#Botones{
+    padding-top: 20px;
+}
+
+#containerPj{
+    padding-top: 50px;
+    align-items: center;
+}
+
+#containerPhotoHuman{
+    padding: 5vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+#ruImg{
+    height: 290px;
+}
+
+#containerPhoto img{
+    height: 290px;
+}
+
+#containerInfo h3{
+    padding-top: 20px;
+    margin-bottom: 15px;
+}
+

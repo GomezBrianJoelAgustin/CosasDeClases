@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Css/style.css">
+    <link rel="stylesheet" href="Css/leaflet.css">
+    <title>Tp3</title>
+</head>
+<body>
+    
+    <!--Consumimos dos apis, un html y un boton que diga buscar, cuando lo apreto es una llamada con fetch a random user, eso me devuelve el la informacion json, de esa informacion buscar longitude y latitude de esa persona. Una vez que ande eso dibujar con la api de mapas, en la cual aparecera un punto de donde vive esa persona -->
+    <section id="pjContainer">
+
+        <h1>Buscador de personas</h1>
+
+        <button id="userSearch" onclick="userSearch()">Buscar</button>
+
+        <div id="pj"></div>
+        
+    </section>
+
+    <div id="map"></div>
+
+    <div id="error"></div>
+
+    <script src="js/json.js"></script>
+    <script src="js/leaflet.js"></script>
+</body>
+</html>
