@@ -74,7 +74,8 @@ function getCharacter() {
 
                 mostrarPjs(datosRM, datosRU)
 
-            })
+            }).catch(error => console.log("Error fetch RandomUser " + error))
+
         })
 
     } else {
