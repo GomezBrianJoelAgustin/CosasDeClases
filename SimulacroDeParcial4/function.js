@@ -10,10 +10,10 @@ edad RU
 */
 
 var mayorRM = [];
-var IdMayorRM = 0;
+var datosRM = [];
 
 var mayorRU = 0;
-var IdMayorRU = 0;
+var datosRU = [];
 
 function getCharacter() {
 

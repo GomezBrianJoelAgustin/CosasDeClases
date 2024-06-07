@@ -1,73 +1,68 @@
 const pjs = [];
-const maxId = [0];
+const maxId = 0;
+const connected = navigator.onLine; //Variable para comprobar el estado de wifi.
 
-function buscarMayor(){
+function buscarMayor() {
 
-    const pjId = document.getElementById("pjId").value;
+  const pjId = document.getElementById("pjId").value;
+  const btn = document.getElementById("btn");
 
-    pjs.push(pjId)
+  pjs.push(pjId);
 
-    if (pjs.length == 9) {
-        
-        alert("Ya se ingresaron 10 numeros")
+  console.log(pjs);
 
-        for (i=0; i <= pjs.length; i ++){
-            if (pjs[i] > maxId[0]) {
-                maxId[0] = pjs[i];
-            } 
-        };
-        
-        console.log("Array = " + pjs)
-        console.log("La Id mayor es = " + maxId)
-        personajes(maxId)
-    };
-    
-}; 
+  if (pjs.length === 9) {
 
+    alert("Ya se ingresaron 10 numeros");
+    btn.disabled = true;
 
-function personajes (maxId){
+    var maxId = Math.max(...pjs);
 
-    fetch (`https://rickandmortyapi.com/api/character/${maxId[0]}`)
-    .then (res => res.json())
-    .then (dataRym =>{
+    console.log("Array = " + pjs);
+    console.log("La Id mayor es = " + maxId);
 
-        fetch (`https://randomuser.me/api/`)
-        .then(respuesta => respuesta.json())
-        .then (dataRu =>{
+    if (connected) { //Verifica la conexion de wifi gracias a la variable de connected definida anteriormente.
+      personajes(maxId); //Si hay wifi pasa el dato a la proxima funcion y continua todo normal :)
+    } else {
+      alert("¡No hay conexión a internet!"); //Si no hay wifi mostramos con una alerta.
+    }
+  }
+}
 
-            console.log(dataRym)
-            console.log(dataRu)
+function personajes(maxId) {
 
-            if ( dataRym.species === "Human") {
-                const containerPj = document.getElementById("containerPj");
-                containerPj.innerHTML = `
+    fetch(`https://rickandmortyapi.com/api/character/${maxId}`)
+      .then(res => res.json())
+      .then(dataRym => {
+
+        fetch(`https://randomuser.me/api/`)
+          .then(respuesta => respuesta.json())
+          .then(dataRu => {
+
+            console.log(dataRym);
+            console.log(dataRu);
+
+            if (dataRym.species === "Human") {
+              const containerPj = document.getElementById("containerPj");
+              containerPj.innerHTML = `
                 <div id="containerPhotoHuman">
-                    <img src="${dataRym.image}" alt="">
-                    <img id= "ruImg" src="${dataRu.results[0].picture.large}" alt="">
+                  <img src="${dataRym.image}" alt="">
+                  <img id="ruImg" src="${dataRu.results[0].picture.large}" alt="">
                 </div>
-                `;
-            };
-
-            if (dataRym.species != "Human") {
-                const containerPj = document.getElementById("containerPj");
-                containerPj.innerHTML = `
+              `;
+            } else {
+              const containerPj = document.getElementById("containerPj");
+              containerPj.innerHTML = `
                 <div id="containerPhoto">
-                    <img src="${dataRu.results[0].picture.large}" alt=""></img>
-                </div>    
-
-                <div id="containerInfo">
-                    <h3>Nombre: ${dataRu.results[0].name.first}</h3>
-                    <h3>Apellido: ${dataRu.results[0].name.last}</h3>
-                    <h3>Gmail: ${dataRu.results[0].email}</h3>
+                  <img src="${dataRu.results[0].picture.large}" alt=""></img>
                 </div>
-                `
+                <div id="containerInfo">
+                  <h3>Nombre: ${dataRu.results[0].name.first}</h3>
+                  <h3>Apellido: ${dataRu.results[0].name.last}</h3>
+                  <h3>Gmail: ${dataRu.results[0].email}</h3>
+                </div>
+              `;
             }
-
-         });
-
-    })
-
-    .catch(erorr => console.log(error))
-        document.getElementById("error").innerHTML = "El error es: " + (error)
-
-};
+          })
+      })
+}
