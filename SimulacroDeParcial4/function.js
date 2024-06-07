@@ -23,7 +23,7 @@ function getCharacter() {
 
     if (!!connected) {
 
-        fetch(`https://rickandmortyapi.com/api/character/1,183,2`)
+        fetch(`https://rickandmortyapi.com/api/character/1,2,183`)
         .then(res => res.json())
         .then(dataRM => {
 
@@ -41,30 +41,28 @@ function getCharacter() {
                     if (dataRU.results[i].dob.age >= mayorRU) {
 
                         mayorRU = dataRU.results[i].dob.age;
+
+                        datosRU[0] = dataRU.results[i] 
                         
                     }
-                }
+
+                } 
 
                 for (let i = 0; i < 3; i++) {
                     
                     mayorRM.push(dataRM[i].name)
-                    
-                    console.log("Los nombres son: " + mayorRM)
 
                     mayorRM.sort();
-                    
+
+                    datosRM[0] = dataRM[i];
                 }
 
-                console.log("El mayor de Rickandmorty es: " + mayorRM[0])
-
-                console.log("El mayor de randomuser es: " + mayorRU)
-
-                pjRM.innerHTML = `
+                resultados.innerHTML = `
                 <h1> El mayor de Rickandmorty es: ${mayorRM[0]}
-                `
-                pjRU.innerHTML = `
                 <h1> El mayor de RandomUser es: ${mayorRU}
                 `
+
+                mostrarPjs(datosRM, datosRU)
 
             })
         })
@@ -75,9 +73,17 @@ function getCharacter() {
         <h1> No tenes wifi crack </h1>
         `
     }
-
 }
 
-function mostrarPjs() {
+function mostrarPjs(datosRM, datosRU) {
+
+    pjRM.innerHTML = `
+    <p> name: ${datosRM[0].name}</p>
+    <p> gender: ${datosRM[0].gender}</p>
+    `
     
+    pjRU.innerHTML = `
+    <p> age: ${datosRU[0].dob.age}</p>
+    <p> city: ${datosRU[0].location.city}</p>
+    `
 }
