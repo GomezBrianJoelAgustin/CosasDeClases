@@ -21,7 +21,7 @@ var datosRU = [];
 
 function getCharacter() {
 
-    if (!!connected) {
+    if (connected) {
 
         fetch(`https://rickandmortyapi.com/api/character/1,2,183`)
         .then(res => res.json())
@@ -51,14 +51,24 @@ function getCharacter() {
                 for (let i = 0; i < 3; i++) {
                     
                     mayorRM.push(dataRM[i].name)
+                    
+                }
+                
+                mayorRM.sort(); 
 
-                    mayorRM.sort();
-
-                    datosRM[0] = dataRM[i];
+                for (let i = 0; i < dataRM.length; i++) {
+                        
+                    if (dataRM[i].name == mayorRM[2]) {
+                            
+                        datosRM[0] = dataRM[i]
+                    }
+                    
                 }
 
+                console.log("Los datos del mayor de rick and morty es: " + datosRM[0].name)
+
                 resultados.innerHTML = `
-                <h1> El mayor de Rickandmorty es: ${mayorRM[0]}
+                <h1> El mayor de Rickandmorty es: ${mayorRM[2]}
                 <h1> El mayor de RandomUser es: ${mayorRU}
                 `
 

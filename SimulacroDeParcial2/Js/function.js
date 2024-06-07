@@ -51,7 +51,7 @@ function buscarPersonajes2(){
             alert("Ya se ingresaron 3 numeros")
             let personajes = pjs1.concat(pjs2) 
 
-            if (!!connected) {
+            if (connected) {
                 mostrarPjs(personajes)
                 console.log("El array concatenado es: " + personajes)
             } else{
