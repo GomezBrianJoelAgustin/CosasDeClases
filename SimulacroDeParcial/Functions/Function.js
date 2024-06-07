@@ -25,6 +25,9 @@ function buscarMayor() {
       personajes(maxId); //Si hay wifi pasa el dato a la proxima funcion y continua todo normal :)
     } else {
       alert("¡No hay conexión a internet!"); //Si no hay wifi mostramos con una alerta.
+      error.innerHTML = `
+      <h1> No estas conectado a wifi </h1>
+      `
     }
   }
 }
