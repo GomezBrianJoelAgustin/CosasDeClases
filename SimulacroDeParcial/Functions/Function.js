@@ -21,7 +21,7 @@ function buscarMayor() {
     console.log("Array = " + pjs);
     console.log("La Id mayor es = " + maxId);
 
-    if (connected) { //Verifica la conexion de wifi gracias a la variable de connected definida anteriormente.
+    if (!!connected) { //Verifica la conexion de wifi gracias a la variable de connected definida anteriormente.
       personajes(maxId); //Si hay wifi pasa el dato a la proxima funcion y continua todo normal :)
     } else {
       alert("¡No hay conexión a internet!"); //Si no hay wifi mostramos con una alerta.
